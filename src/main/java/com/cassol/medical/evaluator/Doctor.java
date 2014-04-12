@@ -13,7 +13,7 @@ public class Doctor {
 	}
 
 	public float rating() {
-		int totalRate = 0;
+		float totalRate = 0;
 		for (Evaluation rate : ratings) {
 			totalRate+=rate.getValue();
 		}
