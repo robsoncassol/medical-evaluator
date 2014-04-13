@@ -3,6 +3,7 @@ package com.cassol.medical.evaluator;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -16,22 +17,26 @@ public class Patient {
 	private Long id;
 	private String name;
 	
-	@OneToMany(mappedBy="patient")
+	@OneToMany(mappedBy="patient", cascade=CascadeType.ALL)
 	private List<Evaluation> evaluations = new ArrayList<>();
 
-	public Patient(String name) {
-		this.name = name;
+	public Patient() {
 	}
 	
+	public Patient(String name) {
+		this();
+		this.name = name;
+	}
+
 	public String getName(){
 		return name;
 	}
 
-	public void evaluate(String text, int value, Doctor doctor) {
+	public Evaluation evaluate(String text, int value, Doctor doctor) {
 		Evaluation eval = new Evaluation(text, value,doctor,this);
 		doctor.addEvaluation(eval);
 		evaluations.add(eval);
-		
+		return eval;
 	}
 
 	public int numberOfReviews() {

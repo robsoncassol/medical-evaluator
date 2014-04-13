@@ -1,7 +1,6 @@
 package com.cassol.medical.evaluator;
 
 
-import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
 
 import org.hibernate.SessionFactory;
@@ -9,6 +8,7 @@ import org.hibernate.SessionFactory;
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
+import br.com.caelum.vraptor.view.Results;
 
 @Resource
 @Path("/doctor")
@@ -27,9 +27,14 @@ public class DoctorController {
 	@Transactional
 	public void show(){
 		Doctor doctor = new Doctor("Dr. Alexandre");
+		Patient patient = new Patient("Johnn");
 		
-		sessionFactory.getCurrentSession().save(doctor);
+		doctor = (Doctor) sessionFactory.getCurrentSession().merge(doctor);
+		patient = (Patient) sessionFactory.getCurrentSession().merge(patient);
 		
+		Evaluation evaluate = patient.evaluate("Médico ruim", 2, doctor);
+		
+		result.use(Results.json()).from(evaluate).serialize();
 	}
 	
 

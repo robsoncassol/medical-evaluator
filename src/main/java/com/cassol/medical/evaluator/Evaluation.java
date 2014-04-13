@@ -19,8 +19,13 @@ public class Evaluation {
 	
 	@ManyToOne
 	private Patient patient;
+	
+	private Evaluation(){
+		
+	}
 
 	public Evaluation(String text, int value, Doctor doctor, Patient patient) {
+		this();
 		this.text = text;
 		this.value = value;
 		this.doctor = doctor;
