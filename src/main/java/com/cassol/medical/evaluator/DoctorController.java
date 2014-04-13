@@ -2,13 +2,12 @@ package com.cassol.medical.evaluator;
 
 
 import javax.transaction.Transactional;
-
 import org.hibernate.SessionFactory;
-
 import br.com.caelum.vraptor.Path;
 import br.com.caelum.vraptor.Resource;
 import br.com.caelum.vraptor.Result;
 import br.com.caelum.vraptor.view.Results;
+
 
 @Resource
 @Path("/doctor")
