@@ -11,8 +11,8 @@ public class Evaluation {
 	@Id
 	@GeneratedValue
 	private Long id;
-	private String text;
-	private int value;
+
+	private Stars stars;
 	
 	@ManyToOne
 	private Doctor doctor;
@@ -20,25 +20,22 @@ public class Evaluation {
 	@ManyToOne
 	private Patient patient;
 	
+	@ManyToOne
+	private Question question;
+
+	
 	private Evaluation(){
 		
 	}
 
-	public Evaluation(String text, int value, Doctor doctor, Patient patient) {
+	public Evaluation(Question question, Stars stars, Doctor doctor, Patient patient) {
 		this();
-		this.text = text;
-		this.value = value;
+		this.question = question;
+		this.stars = stars;
 		this.doctor = doctor;
 		this.patient = patient;
 	}
 
-	public int getValue() {
-		return value;
-	}
-
-	public String getText() {
-		return text;
-	}
 
 	public Doctor getDoctor() {
 		return doctor;
@@ -46,6 +43,10 @@ public class Evaluation {
 
 	public Patient getPatient() {
 		return patient;
+	}
+
+	public float getValue() {
+		return question.getWeight()*this.stars.number();
 	}
 
 }

@@ -18,7 +18,9 @@ public class PatientTest  {
 	
 	@Test
 	public void shouldMakeAGoodEvaluationOfTheDoctor(){
-		patient.evaluate("é um bom médico",10,doctor);
+		Question question = new Question("O médico é pontual?",5);
+		patient.evaluate(question,Stars.ONE,doctor);
+		
 		Assert.assertTrue(patient.numberOfReviews() > 0);
 	}
 

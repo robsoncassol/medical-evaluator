@@ -32,9 +32,10 @@ public class DoctorController {
 		doctor = (Doctor) sessionFactory.getCurrentSession().merge(doctor);
 		patient = (Patient) sessionFactory.getCurrentSession().merge(patient);
 		
-		Evaluation evaluate = patient.evaluate("Médico ruim", 2, doctor);
 		
-		result.use(Results.json()).from(evaluate).serialize();
+//		Evaluation evaluate = patient.evaluate("Médico ruim", 2, doctor);
+//		
+//		result.use(Results.json()).from(evaluate).serialize();
 	}
 	
 

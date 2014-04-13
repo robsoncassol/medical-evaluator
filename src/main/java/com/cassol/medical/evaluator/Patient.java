@@ -32,15 +32,15 @@ public class Patient {
 		return name;
 	}
 
-	public Evaluation evaluate(String text, int value, Doctor doctor) {
-		Evaluation eval = new Evaluation(text, value,doctor,this);
-		doctor.addEvaluation(eval);
-		evaluations.add(eval);
-		return eval;
-	}
-
 	public int numberOfReviews() {
 		return evaluations.size();
 	}
+
+	public void evaluate(Question question, Stars stars, Doctor doctor) {
+		Evaluation evaluation = new Evaluation(question,stars,doctor,this);
+		doctor.addEvaluation(evaluation);
+		evaluations.add(evaluation);
+	}
+
 
 }

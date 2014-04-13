@@ -19,10 +19,23 @@ public class DoctorTest {
 	
 	
 	@Test
+	public void shouldGetARating(){
+		Question q1 = new Question("resolveu seu problema ?",10);
+		
+		patient.evaluate(q1,Stars.THREE,doctor);
+		
+		assertEquals(new Float(30),doctor.rating());
+	}
+	
+	@Test
 	public void shouldGetAAverageRating(){
-		patient.evaluate("é um bom médico",10,doctor);
-		patient.evaluate("chega atrazado",5,doctor);
-		assertTrue(doctor.rating()==7.5);
+		Question q1 = new Question("resolveu seu problema ?",10);
+		Question q2 = new Question("é pontual ?",3);
+		
+		patient.evaluate(q1,Stars.THREE,doctor);
+		patient.evaluate(q2,Stars.FIVE,doctor);
+		
+		assertEquals(new Float(22.5),doctor.rating());
 	}
 
 

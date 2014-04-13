@@ -28,7 +28,7 @@ public class Doctor {
 		this.name = name;
 	}
 
-	public float rating() {
+	public Float rating() {
 		float totalRate = 0;
 		for (Evaluation rate : evaluations) {
 			totalRate+=rate.getValue();
