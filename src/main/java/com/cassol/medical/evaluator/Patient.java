@@ -36,10 +36,11 @@ public class Patient {
 		return evaluations.size();
 	}
 
-	public void evaluate(Question question, Stars stars, Doctor doctor) {
+	public Evaluation evaluate(Question question, Stars stars, Doctor doctor) {
 		Evaluation evaluation = new Evaluation(question,stars,doctor,this);
 		doctor.addEvaluation(evaluation);
 		evaluations.add(evaluation);
+		return evaluation;
 	}
 
 
