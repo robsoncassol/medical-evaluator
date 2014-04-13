@@ -19,7 +19,7 @@ public class PatientTest  {
 	@Test
 	public void shouldMakeAGoodEvaluationOfTheDoctor(){
 		patient.evaluate("é um bom médico",10,doctor);
-		Assert.assertTrue(patient.numberOfreviews() > 0);
+		Assert.assertTrue(patient.numberOfReviews() > 0);
 	}
 
 

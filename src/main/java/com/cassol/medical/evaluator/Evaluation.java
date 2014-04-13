@@ -1,12 +1,25 @@
 package com.cassol.medical.evaluator;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class Evaluation {
-	
+
+	@Id
+	@GeneratedValue
+	private Long id;
 	private String text;
 	private int value;
-	private Doctor doctor;
-	private Patient patient;
 	
+	@ManyToOne
+	private Doctor doctor;
+	
+	@ManyToOne
+	private Patient patient;
+
 	public Evaluation(String text, int value, Doctor doctor, Patient patient) {
 		this.text = text;
 		this.value = value;
@@ -18,6 +31,16 @@ public class Evaluation {
 		return value;
 	}
 
-	
+	public String getText() {
+		return text;
+	}
+
+	public Doctor getDoctor() {
+		return doctor;
+	}
+
+	public Patient getPatient() {
+		return patient;
+	}
 
 }

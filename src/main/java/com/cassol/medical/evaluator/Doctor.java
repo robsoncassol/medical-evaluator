@@ -3,10 +3,21 @@ package com.cassol.medical.evaluator;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+
+@Entity
 public class Doctor {
 
+	@Id
+	@GeneratedValue
+	private Long id;
 	private String name;
-	private List<Evaluation> ratings = new ArrayList<>();
+	
+	@OneToMany(mappedBy="doctor")
+	private List<Evaluation> evaluations = new ArrayList<>();
 
 	public Doctor(String name) {
 		this.name = name;
@@ -14,14 +25,18 @@ public class Doctor {
 
 	public float rating() {
 		float totalRate = 0;
-		for (Evaluation rate : ratings) {
+		for (Evaluation rate : evaluations) {
 			totalRate+=rate.getValue();
 		}
-		return totalRate/ratings.size();
+		return totalRate/evaluations.size();
 	}
 
 	public void addEvaluation(Evaluation eval) {
-		ratings.add(eval);
+		evaluations.add(eval);
+	}
+	
+	public String getName(){
+		return name;
 	}
 
 }
