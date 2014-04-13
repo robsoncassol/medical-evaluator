@@ -27,14 +27,16 @@ public class DoctorController {
 	public void show(){
 		Doctor doctor = new Doctor("Dr. Alexandre");
 		Patient patient = new Patient("Johnn");
+		Question ask = new Question("Atende rápido", 3);
 		
 		doctor = (Doctor) sessionFactory.getCurrentSession().merge(doctor);
 		patient = (Patient) sessionFactory.getCurrentSession().merge(patient);
+		ask = (Question) sessionFactory.getCurrentSession().merge(ask);
 		
 		
-//		Evaluation evaluate = patient.evaluate("Médico ruim", 2, doctor);
-//		
-//		result.use(Results.json()).from(evaluate).serialize();
+		Evaluation evaluate = patient.evaluate(ask, Stars.THREE, doctor);
+
+		result.use(Results.json()).from(evaluate).serialize();
 	}
 	
 
