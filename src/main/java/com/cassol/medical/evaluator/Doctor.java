@@ -9,6 +9,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.cassol.medical.evaluator.locale.Address;
+
 @Entity
 public class Doctor {
 
@@ -19,6 +21,9 @@ public class Doctor {
 	
 	@OneToMany(mappedBy="doctor", cascade=CascadeType.ALL)
 	private List<Evaluation> evaluations = new ArrayList<>();
+
+	@OneToMany(mappedBy="doctor", cascade=CascadeType.ALL)
+	private List<Address> addresses = new ArrayList<>();
 
 	private Doctor() {
 	}
